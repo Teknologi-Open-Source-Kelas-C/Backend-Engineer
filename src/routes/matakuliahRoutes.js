@@ -8,6 +8,7 @@ const {
   deleteMatakuliah,
   getMatakuliahDosen
 } = require('../controllers/matakuliahController');
+const { saveLastSeen } = require('../controllers/lastSeenController');
 
 const router = express.Router();
 
@@ -21,7 +22,7 @@ router
 router.get('/dosen',authorize('dosen', 'admin'), getMatakuliahDosen);
 router
 .route('/:id')
-.get(getMatakuliahById)
+.get(saveLastSeen,getMatakuliahById)
 .put(authorize('admin'),updateMatakuliah)
 .delete(authorize('admin'),deleteMatakuliah);
 

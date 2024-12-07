@@ -7,38 +7,33 @@ const LastSeen = sequelize.define('LastSeen', {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
-    primaryKey: true
+    primaryKey: true,
   },
   userId: {
     type: DataTypes.UUID,
     allowNull: false,
-    references: {
-      model: User,
-      key: 'id'
-    }
   },
   matakuliahId: {
     type: DataTypes.UUID,
     allowNull: false,
-    references: {
-      model: Matakuliah,
-      key: 'id'
-    }
   },
-  LastSeen: {
+  viewedAt: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
-    allowNull: false
-  }
+    allowNull: false,
+  },
 }, {
   indexes: [
     {
       unique: true,
-      fields: ['userId', 'matakuliahId']
-    }
-  ]
+      fields: ['userId', 'matakuliahId'],
+    },
+  ],
+  tableName: 'last_seen', // Optional, untuk menyesuaikan nama tabel
+  timestamps: false, // Nonaktifkan otomatis createdAt/updatedAt
 });
 
+// Relasi
 LastSeen.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 LastSeen.belongsTo(Matakuliah, { foreignKey: 'matakuliahId', as: 'matakuliah' });
 
