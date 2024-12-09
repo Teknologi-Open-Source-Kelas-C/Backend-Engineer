@@ -7,7 +7,7 @@ const {
   getModulById,
   updateModul,
   deleteModul,
-  getModulByPertemuan,
+  // getModulByPertemuan,
   getModulByMatakuliah,
   readModulFile,
   donwloadModulFile,
@@ -29,7 +29,7 @@ router
   .put(authorize('admin', 'dosen'),upload.single('file'), updateModul)
   .delete(authorize('admin', 'dosen'),deleteModul);
 
-  router.get('/pertemuan/:pertemuan', getModulByPertemuan);
+  // router.get('/pertemuan/:pertemuan', getModulByPertemuan);
   router.get('/matkul/:matakuliah', getModulByMatakuliah);
   
 router.get('/:modulId/read', readModulFile);

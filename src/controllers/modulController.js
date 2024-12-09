@@ -76,27 +76,27 @@ exports.getModulById = async (req, res) => {
   }
 };
 
-exports.getModulByPertemuan = async (req, res) => {
-  try {
-    const { pertemuan } = req.params;
-    const modul = await Modul.findOne({
-      where: { pertemuanKe: pertemuan },
-      include: [{
-        model: Matakuliah,
-        as: 'matakuliah'
-      }]
-    });
+// exports.getModulByPertemuan = async (req, res) => {
+//   try {
+//     const { pertemuan } = req.params;
+//     const modul = await Modul.findOne({
+//       where: { pertemuanKe: pertemuan },
+//       include: [{
+//         model: Matakuliah,
+//         as: 'matakuliah'
+//       }]
+//     });
 
-    if (!modul) {
-      return res.status(404).json({ message: "Tidak ada modul di prtemuan ini" });
-    }
+//     if (!modul) {
+//       return res.status(404).json({ message: "Tidak ada modul di prtemuan ini" });
+//     }
 
-    return res.status(200).json({ message: "Berhasil mengambil data di modul", data: modul });
+//     return res.status(200).json({ message: "Berhasil mengambil data di modul", data: modul });
 
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-}
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// }
 
 exports.getModulByMatakuliah = async (req, res) => {
   try {

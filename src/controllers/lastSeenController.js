@@ -48,7 +48,7 @@ exports.saveLastSeen = async (req, res, next) => {
 
     // Jika data melebihi batas 5, hapus yang lama
     if (lastSeenData.length > 5) {
-      const toDelete = lastSeenData.slice(5); // Ambil data dari indeks ke-5 ke belakang
+      const toDelete = lastSeenData.slice(4); // Ambil data dari indeks ke-5 ke belakang
       const toDeleteIds = toDelete.map((item) => item.id); // Ambil ID yang akan dihapus
       await LastSeen.destroy({ where: { id: toDeleteIds } }); // Hapus data lama
     }

@@ -70,25 +70,3 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: 'Error logging in', error: error.message });
   }
 };
-
-exports.getCurrentUser = async (req, res) => {
-  try {
-    const token = req.header('Authorization').replace('Bearer ', '');
-    if (!token) {
-      return res.status(401).json({ status: 401, message: 'Token tidak ditemukan' });
-    }
-    const decoded = jwt.verify(token, JWT_SECRET);
-
-
-    const user = await User.findByPk(decoded.id);
-
-    if (!user) {
-      return res.status(404).json({ status: 404, message: 'User tidak ditemukan' });
-    }
-
-    return res.status(200).json({ status: 200, message: 'Selamat datang', data: user });
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ message: 'Internal server error', error: error });
-  }
-}
