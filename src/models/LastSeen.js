@@ -34,7 +34,15 @@ const LastSeen = sequelize.define('LastSeen', {
 });
 
 // Relasi
-LastSeen.belongsTo(User, { foreignKey: 'userId', as: 'user' });
-LastSeen.belongsTo(Matakuliah, { foreignKey: 'matakuliahId', as: 'matakuliah' });
+LastSeen.belongsTo(User, {
+  foreignKey: 'userId', 
+  as: 'user',
+  onDelete: 'CASCADE',
+});
+LastSeen.belongsTo(Matakuliah, {
+  foreignKey: 'matakuliahId',
+  as: 'matakuliah',
+  onDelete: 'CASCADE',
+});
 
 module.exports = LastSeen;
