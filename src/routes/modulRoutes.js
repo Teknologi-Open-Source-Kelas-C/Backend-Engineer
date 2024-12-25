@@ -7,10 +7,10 @@ const {
   getModulById,
   updateModul,
   deleteModul,
-  getModulByPertemuan,
+  // getModulByPertemuan,
   getModulByMatakuliah,
   readModulFile,
-  donwloadModulFile,
+  downloadModulFile,
   searchModul
 } = require('../controllers/modulController');
 
@@ -29,10 +29,10 @@ router
   .put(authorize('admin', 'dosen'),upload.single('file'), updateModul)
   .delete(authorize('admin', 'dosen'),deleteModul);
 
-  router.get('/pertemuan/:pertemuan', getModulByPertemuan);
+  // router.get('/pertemuan/:pertemuan', getModulByPertemuan);
   router.get('/matkul/:matakuliah', getModulByMatakuliah);
   
 router.get('/:modulId/read', readModulFile);
-router.get('/:modulId/download', donwloadModulFile);
+router.get('/:modulId/download', downloadModulFile);
 
 module.exports = router;
